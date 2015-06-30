@@ -65,6 +65,31 @@ server.get('/rest/test1', function(req, res, next) {
 });
 
 
+
+server.get('/test/users', function(req, res, next) {
+
+    var token = req.header('Authorization');
+    var parts = token.split(' ');
+    var jwtoken = parts[1];
+
+    var decoded = jwt.decode(jwtoken, secret);
+
+    var users = [
+        {
+            username: 'admin'
+        },
+        {
+            username: 'super'
+        }
+    ];
+
+
+    res.send(users);
+    next();
+});
+
+
+
 server.listen(process.env.PORT || 1337, function() {
     console.log('%s listening at %s', server.name, server.url);
 });

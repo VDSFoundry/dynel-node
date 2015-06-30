@@ -38,12 +38,12 @@ server.post('/oauth/token', function(req, res, next) {
 
     var data = authenticate(req.params.username, req.params.password);
     if (!data) {
-        res.send({
+        var err = {
             error: "invalid_grant",
             error_description: "The user name or password is incorrect."
-        });
-        next();
-        return;
+        };
+
+        return next(new restify.errors.UnauthorizedError('The user name or password is incorrect.'));
     }
     var token = jwt.encode(data, secret);
 

@@ -37,6 +37,14 @@ var authenticate = function(username, password) {
 server.post('/oauth/token', function(req, res, next) {
 
     var data = authenticate(req.params.username, req.params.password);
+    if (!data) {
+        req.send({
+            error: "invalid_grant",
+            error_description: "The user name or password is incorrect."
+        });
+        next();
+        return;
+    }
     var token = jwt.encode(data, secret);
 
     var result = {

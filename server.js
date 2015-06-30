@@ -49,6 +49,20 @@ server.post('/oauth/token', function(req, res, next) {
     next();
 });
 
+server.get('/rest/test1', function(req, res, next) {
+
+    var token = req.header('Authorization');
+    console.log('got token: ' + token);
+
+    var parts = token.split(' ');
+    var jwtoken = parts[1];
+
+    var decoded = jwt.decode(jwtoken, secret);
+    console.log('decoded: ' + decoded);
+
+    res.send(token);
+    next();
+});
 
 
 server.listen(process.env.PORT || 1337, function() {

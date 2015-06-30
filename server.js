@@ -68,11 +68,11 @@ server.get('/rest/test1', function(req, res, next) {
 
 server.get('/test/users', function(req, res, next) {
 
-    var token = req.header('Authorization');
-    var parts = token.split(' ');
-    var jwtoken = parts[1];
-
-    var decoded = jwt.decode(jwtoken, secret);
+//    var token = req.header('Authorization');
+//    var parts = token.split(' ');
+//    var jwtoken = parts[1];
+//
+//   var decoded = jwt.decode(jwtoken, secret);
 
     var users = [
         {

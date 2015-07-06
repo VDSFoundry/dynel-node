@@ -97,6 +97,14 @@ server.get('/test/users', function(req, res, next) {
 });
 
 
+server.post('/rest/post1', function(req, res, next) {
+
+    res.send(req.params);
+    next();
+});
+
+
+
 
 server.listen(process.env.PORT || 1337, function() {
     console.log('%s listening at %s', server.name, server.url);
